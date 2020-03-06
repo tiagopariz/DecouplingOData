@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\DecouplingOData.Application\DecouplingOData.Application.csproj" />
+    <ProjectReference Include="..\DecouplingOData.Application.Interfaces\DecouplingOData.Application.Interfaces.csproj" />
+    <ProjectReference Include="..\DecouplingOData.Application.IoC\DecouplingOData.Application.IoC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleInjector" Version="4.9.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+</Project>

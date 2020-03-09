@@ -21,18 +21,15 @@ namespace DecouplingOData.Infrastructure.Data.Dao.Queries
 
         public IEnumerable GetAll(ODataQueryOptions queryOptions)
         {
-            var entityQueryOptions = new ODataQueryOptions<Category>(new ODataQueryContext(GetEdmModel(), 
-                                                                     typeof(Category),
-                                                                     queryOptions.Context.Path),
-                                                                     queryOptions.Request);
-
-            var query = entityQueryOptions.ApplyTo(_context.Categories);
-            return _context.Categories;
+            var oDataQueryContext = new ODataQueryContext(GetEdmModel(), typeof(Category), queryOptions.Context.Path);
+            var entityQueryOptions = new ODataQueryOptions<Category>(oDataQueryContext, queryOptions.Request);
+            var query = entityQueryOptions.ApplyTo(_context.Categories.AsQueryable());
+            return _context.Categories.AsQueryable();
         }
 
         private IEdmModel GetEdmModel()
         {
-            var odataBuilder = new ODataConventionModelBuilder();           
+            var odataBuilder = new ODataConventionModelBuilder();
             var categories = odataBuilder.EntitySet<Category>("Categories");
             categories.EntityType.HasKey(x => x.Id);
             categories.EntityType.Property(x => x.Actived);

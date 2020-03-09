@@ -25,7 +25,7 @@ namespace DecouplingOData.Services.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        [EnableQuery()]
+        [EnableQuery]
         public ActionResult<IEnumerable> Get(ODataQueryOptions<CategoryDtoModel> queryOptions)
         {
             var categories = _categoryAppService.GetAll(queryOptions);

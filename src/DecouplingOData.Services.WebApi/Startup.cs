@@ -31,7 +31,7 @@ namespace DecouplingOData.Services.WebApi
                 .AddNewtonsoftJson();;
 
             // ODATA
-            services.AddOData();     
+            services.AddOData();  
 
             // SIMPLE INJECTOR
             services.AddSimpleInjector(container, options =>
@@ -73,18 +73,16 @@ namespace DecouplingOData.Services.WebApi
         }
         
         /// <summary>
-        /// Simple Injector EDM Model
+        /// OData EDM Model
         /// </summary>
         /// <returns>IEdmModel</returns>
         IEdmModel GetEdmModel()
         {
             var odataBuilder = new ODataConventionModelBuilder();
 
-            odataBuilder.EntitySet<CategoryDtoModel>("CategoriesDtoModels")
-                .EntityType
-                .HasKey(s => s.Id)
-                .Filter(Microsoft.AspNet.OData.Query.QueryOptionSetting.Allowed);
-                
+            var categories = odataBuilder.EntitySet<CategoryDtoModel>("Categories");
+            categories.EntityType.Select();
+            categories.EntityType.HasKey(x => x.Id);               
             return odataBuilder.GetEdmModel();
         }
     }

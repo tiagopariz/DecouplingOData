@@ -18,7 +18,6 @@ namespace DecouplingOData.Services.WebApi
 
         public Startup(IConfiguration configuration)
         {
-            //container.Options.ResolveUnregisteredConcreteTypes = false;
             Configuration = configuration;
         }
 

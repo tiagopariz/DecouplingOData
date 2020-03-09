@@ -1,11 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using DecouplingOData.Domain.Entities;
 using DecouplingOData.Domain.Interfaces.Entities;
 using DecouplingOData.Domain.Interfaces.Queries;
 using DecouplingOData.Domain.Interfaces.Repositories;

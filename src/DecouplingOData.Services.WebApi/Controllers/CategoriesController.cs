@@ -5,6 +5,7 @@ using DecouplingOData.Application.Interfaces.AppServices;
 using DecouplingOData.Services.WebApi.AutoMapper;
 using DecouplingOData.Services.WebApi.DtoModels;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,8 +27,13 @@ namespace DecouplingOData.Services.WebApi.Controllers
         [HttpGet]
         [Route("")]
         [EnableQuery]
-        public ActionResult<IEnumerable> Get(ODataQueryOptions<CategoryDtoModel> queryOptions)
+        public ActionResult<IEnumerable> Get()
         {
+            var model = Startup.GetEdmModel(); 
+            var context = new ODataQueryContext(model,
+                                                typeof(CategoryDtoModel),
+                                                Request.ODataFeature().Path);
+            var queryOptions = new ODataQueryOptions<CategoryDtoModel>(context, Request);
             var categories = _categoryAppService.GetAll(queryOptions);
             return Ok(categories);
         }

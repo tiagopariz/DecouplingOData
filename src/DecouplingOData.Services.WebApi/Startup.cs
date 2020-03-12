@@ -76,7 +76,7 @@ namespace DecouplingOData.Services.WebApi
         /// OData EDM Model
         /// </summary>
         /// <returns>IEdmModel</returns>
-        IEdmModel GetEdmModel()
+        public static IEdmModel GetEdmModel()
         {
             var odataBuilder = new ODataConventionModelBuilder();
 
